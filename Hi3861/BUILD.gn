@@ -1,0 +1,75 @@
+# Copyright (c) 2020 Nanjing Xiaoxiongpai Intelligent Technology Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+nnom_src = [
+  "src/backends/nnom_local.c",
+  "src/backends/nnom_local_q15.c",
+  "src/core/nnom.c",
+  "src/core/nnom_layers.c",
+  "src/core/nnom_tensor.c",
+  "src/core/nnom_utils.c",
+  "src/layers/nnom_activation.c",
+  "src/layers/nnom_avgpool.c",
+  "src/layers/nnom_baselayer.c",
+  "src/layers/nnom_concat.c",
+  "src/layers/nnom_conv2d.c",
+  "src/layers/nnom_conv2d_trans.c",
+  "src/layers/nnom_cropping.c",
+  "src/layers/nnom_dense.c",
+  "src/layers/nnom_dw_conv2d.c",
+  "src/layers/nnom_flatten.c",
+  "src/layers/nnom_global_pool.c",
+  "src/layers/nnom_gru_cell.c",
+  "src/layers/nnom_input.c",
+  "src/layers/nnom_lambda.c",
+  "src/layers/nnom_lstm_cell.c",
+  "src/layers/nnom_matrix.c",
+  "src/layers/nnom_maxpool.c",
+  "src/layers/nnom_output.c",
+  "src/layers/nnom_reshape.c",
+  "src/layers/nnom_rnn.c",
+  "src/layers/nnom_simple_cell.c",
+  "src/layers/nnom_softmax.c",
+  "src/layers/nnom_sumpool.c",
+  "src/layers/nnom_upsample.c",
+  "src/layers/nnom_zero_padding.c",
+]
+
+static_library("My_Project") {
+  sources = [
+              "src/E53_SC2.c",
+              "src/Button.c",
+              "src/wifi_connect.c",
+              "src/mqtt_cloud.c",
+              "main.c",
+            ] + nnom_src
+
+  include_dirs = [
+    "//utils/native/lite/include",
+    "//kernel/liteos_m/components/cmsis/2.0",
+    "//base/iot_hardware/interfaces/kits/wifiiot_lite",
+    "//third_party/cJSON",
+    "//foundation/communication/interfaces/kits/wifi_lite/wifiservice",
+    "//vendor/hisi/hi3861/hi3861/third_party/lwip_sack/include/",
+    "//third_party/iot_link/oc_mqtt/oc_mqtt_al",
+    "//third_party/iot_link/oc_mqtt/oc_mqtt_profile_v5",
+    "//third_party/iot_link/inc",
+    "//third_party/iot_link/queue",
+    "inc/layers",
+    "inc",
+  ]
+
+  deps = [
+    "//third_party/iot_link:iot_link",
+  ]
+}
